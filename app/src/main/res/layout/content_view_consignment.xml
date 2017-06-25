@@ -7,7 +7,7 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.skyskew.sampledeliveryapp.ViewConsignmentActivity"
     tools:showIn="@layout/activity_view_consignment">
-
+    <!-- TODO ADD DIMENSION ,COLORS AND STRINGS IN THE dimens.xml,strings.xml files -->
     <FrameLayout
         android:id="@+id/view_map_frames"
         android:layout_width="match_parent"

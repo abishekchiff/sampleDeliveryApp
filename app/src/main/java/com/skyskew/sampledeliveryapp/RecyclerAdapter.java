@@ -83,6 +83,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.PhotoH
             args.putSerializable("CONSIGNEE DETAIL", (Serializable)mDetail);
             showViewIntent.putExtra("BUNDLE FROM CARD",args);
             context.startActivity(showViewIntent);
+
         }
         public void bindItem(ConsigneeDetail item) {
             mDetail = item;

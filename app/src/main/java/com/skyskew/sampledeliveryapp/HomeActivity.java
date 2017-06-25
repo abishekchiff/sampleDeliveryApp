@@ -119,7 +119,7 @@ public class HomeActivity extends AppCompatActivity {
     {
 
 
-
+/////////// floating bar add consignee listner
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -170,7 +170,7 @@ public class HomeActivity extends AppCompatActivity {
             }
         };
 
-
+////////////////////// recyclerview row swipe listeners
 
         ItemTouchHelper.SimpleCallback simpleItemTouchCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
 
@@ -224,9 +224,7 @@ public class HomeActivity extends AppCompatActivity {
     protected  void onStart()
     {
         super.onStart();
-        if (myPeople.size() == 0) {
-            requestDetail();
-        }
+
 
         LocalBroadcastManager.getInstance(this).registerReceiver((receiver),
                 new IntentFilter(LOC_RESULT)
@@ -249,23 +247,23 @@ public class HomeActivity extends AppCompatActivity {
     private int getLastVisibleItemPosition() {
         return mLinearLayoutManager.findLastVisibleItemPosition();
     }
-    private void setRecyclerViewScrollListener() {
-        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-                int totalItemCount = mRecyclerView.getLayoutManager().getItemCount();
-                if (totalItemCount == getLastVisibleItemPosition() + 1) {
-                  //  requestPhoto();
-                }
-            }
-        });
-    }
-    private void requestDetail()
-    {
-
-
-    }
+//    private void setRecyclerViewScrollListener() {
+//        mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+//            @Override
+//            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+//                super.onScrollStateChanged(recyclerView, newState);
+//                int totalItemCount = mRecyclerView.getLayoutManager().getItemCount();
+//                if (totalItemCount == getLastVisibleItemPosition() + 1) {
+//                  //  requestPhoto();
+//                }
+//            }
+//        });
+//    }
+//    private void requestDetail()
+//    {
+//
+//
+//    }
 
 
     private boolean checkAndRequestPermissions(Context context) {
@@ -326,8 +324,10 @@ public class HomeActivity extends AppCompatActivity {
             case 1:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
+
                     //Permission Granted Successfully. Write working code here.
 
+                    //TODO:should handle permission results individually for every permission
 
 
                 } else {
@@ -335,6 +335,7 @@ public class HomeActivity extends AppCompatActivity {
                     homeIntent.addCategory( Intent.CATEGORY_HOME );
                     homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(homeIntent);
+
                 }
                 break;
         }

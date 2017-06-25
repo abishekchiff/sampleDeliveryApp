@@ -8,7 +8,7 @@
     tools:context="com.skyskew.sampledeliveryapp.MapsSampleMainActivity"
     tools:showIn="@layout/activity_maps_sample_main">
 
-
+    <!-- TODO ADD DIMENSION ,COLORS AND STRINGS IN THE dimens.xml,strings.xml files -->
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
