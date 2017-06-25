@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.skyskew.sampledeliveryapp.MapsSampleMainActivity">
+
+
+    <item
+
+
+        android:title="@string/action_bar_empty"
+        android:orderInCategory="104"
+
+        app:showAsAction="always"
+        />
+    <item
+
+
+        android:title="@string/action_bar_empty"
+        android:orderInCategory="104"
+
+        app:showAsAction="always"
+        />
+    <item
+
+
+        android:title="@string/action_bar_empty"
+        android:orderInCategory="103"
+
+        app:showAsAction="always"
+        />
+    <item
+
+        android:orderInCategory="102"
+        android:title="@string/title_activity_maps_sample_main"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_back_consignee"
+
+
+        android:icon="@drawable/ic_arrow_back_black_24dp"
+        android:orderInCategory="101"
+        android:title="@string/action_back_consignee"
+        app:showAsAction="always" />
+
+</menu>

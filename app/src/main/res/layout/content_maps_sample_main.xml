@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.skyskew.sampledeliveryapp.MapsSampleMainActivity"
+    tools:showIn="@layout/activity_maps_sample_main">
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/map_frames"
+        >
+
+              <fragment
+                 android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:id="@+id/add_map_fragment"
+                  android:name ="com.google.android.gms.maps.MapFragment"
+                app:cameraTargetLat = "13.0827"
+                app:cameraTargetLng = "80.2707184" />
+
+                <LinearLayout
+                    android:id = "@+id/marker_linear"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:id = "@+id/marker_img"
+                        android:layout_gravity="center"
+                        android:src = "@drawable/pin"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id = "@+id/marker_text"
+                        android:background="@drawable/axes_view"
+                        android:textAllCaps="true"
+                        android:gravity="center"
+                        android:minWidth="180dp"
+                        android:paddingLeft="4dp"
+                        android:paddingRight="4dp"
+                        android:text="Location "
+                        android:textColor="@android:color/white" />
+                    />
+
+                </LinearLayout>
+
+
+
+        <EditText
+            style="@style/Widget.AppCompat.EditText"
+            android:id="@+id/consignee_add_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:layout_gravity="left"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="30dp"
+            android:textAllCaps="true"
+            android:alpha="0.8"
+            android:background="@drawable/consignee_edit_view"
+
+
+            android:hint="CONSIGNEE NAME"
+            android:inputType="text"
+            android:textColor="@android:color/white"
+            android:textColorHighlight="@android:color/white"
+            android:textColorHint="@android:color/white"
+            tools:text="CONSIGNEE NAME" />
+
+
+
+
+        </FrameLayout>
+
+    <Button
+        android:id="@+id/add_consignee_btn"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/black"
+        android:gravity="center"
+        android:text="ADD"
+        android:textColor="@android:color/white"
+
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+
+    
+</RelativeLayout>

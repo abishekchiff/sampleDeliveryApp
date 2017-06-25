@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.skyskew.sampledeliveryapp.ViewConsignmentActivity"
+    tools:showIn="@layout/activity_view_consignment">
+
+    <FrameLayout
+        android:id="@+id/view_map_frames"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+     >
+
+        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/view_map_fragment"
+            android:name="com.google.android.gms.maps.MapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:cameraTargetLat="13.0827"
+            app:cameraTargetLng="80.2707184"
+
+
+            />
+
+        <ImageView
+            android:id="@+id/view_marker_img"
+            android:layout_width="41dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+
+             />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:minHeight="70dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="left"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="30dp"
+            android:alpha="0.9"
+            android:background="@drawable/consignee_edit_view"
+
+            android:paddingLeft="20dp"
+            android:paddingRight="10dp"
+
+
+            tools:text="CONSIGNEE NAME"
+            >
+
+            <TextView
+                android:id="@+id/view_consignee_text"
+
+                android:layout_width="180dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:textAllCaps="true"
+                android:textAppearance="@android:style/TextAppearance.Material.Headline"
+                android:textColor="@android:color/white" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_gravity="right|center"
+
+                    android:background="@drawable/ic_person_pin_circle_white_24dp"
+                     />
+
+                <TextView
+                    android:id="@+id/view_dist_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="top|right"
+                    android:text="5 KM"
+
+                    android:textAppearance="@android:style/TextAppearance.Material.Caption"
+                    android:textColor="@android:color/white"
+                    android:textSize="10sp" />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/view_consignee_btn"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/black"
+
+        android:gravity="center"
+        android:text="NAVIGATE"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+      />
+
+    
+
+</RelativeLayout>

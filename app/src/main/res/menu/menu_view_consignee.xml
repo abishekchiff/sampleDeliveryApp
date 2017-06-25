@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.skyskew.sampledeliveryapp.ViewConsignmentActivity">
+
+
+
+    <item
+        android:id="@+id/action_complete_consignee"
+        android:icon="@drawable/ic_done_black_24dp"
+        android:title="@string/action_complete_consignee_view_consignment"
+        android:orderInCategory="96"
+
+        app:showAsAction="always"
+        />
+
+
+    <item
+        android:id="@+id/action_delete_consignee"
+        android:icon="@android:drawable/ic_menu_delete"
+
+
+        android:orderInCategory="95"
+        app:showAsAction="always"
+        android:title="@string/action_delete_consignee_view_consignment" />
+
+   
+
+    <item
+
+
+        android:title="@string/action_bar_empty"
+        android:orderInCategory="92"
+
+        app:showAsAction="always"
+        />
+    <item
+
+        android:orderInCategory="91"
+        android:title="@string/title_activity_view_consignment"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_back_consignee"
+
+
+        android:icon="@drawable/ic_arrow_back_black_24dp"
+        android:orderInCategory="90"
+        android:title="@string/action_back_consignee"
+        app:showAsAction="always" />
+</menu>
