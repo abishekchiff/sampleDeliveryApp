@@ -78,7 +78,7 @@ public class ViewConsignmentActivity extends AppCompatActivity implements Google
     private  ConsigneeDetail consigneeDetail;
     public ArrayList<ConsigneeDetail> objectList;
 
-
+    ConsigneeDataSource datasource;
     private void initializer()
     {
 
@@ -96,6 +96,10 @@ public class ViewConsignmentActivity extends AppCompatActivity implements Google
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayShowTitleEnabled(false);
         actionBar.setDisplayShowHomeEnabled(false);
+
+        datasource = new ConsigneeDataSource(this);
+        datasource.open();
+
 //
 //        Intent intent = getIntent();
 //        Bundle args = intent.getBundleExtra("BUNDLE");
@@ -114,6 +118,8 @@ public class ViewConsignmentActivity extends AppCompatActivity implements Google
 
                 @Override
                 public void onClick(View v) {
+
+
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("google.navigation:q=" +latitude+","+ longitude));
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
@@ -386,12 +392,15 @@ public class ViewConsignmentActivity extends AppCompatActivity implements Google
                 break;
             case R.id.action_complete_consignee :
                 consigneeDetail.setCompleted(true);
+                int updateResult=datasource.updateConsignee(consigneeDetail);
+                Log.d("Updating consignee",String.valueOf(updateResult));
                 goToHome = new Intent(this,HomeActivity.class);
                 startActivity(goToHome);
                 finish();
                 break;
             case R.id.action_delete_consignee:
 
+                datasource.deleteConsignee(consigneeDetail);
                 goToHome = new Intent(this,HomeActivity.class);
                 //goToHome.putExtra("delete item",);
                 startActivity(goToHome);

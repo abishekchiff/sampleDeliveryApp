@@ -78,8 +78,10 @@ public class MapsSampleMainActivity extends AppCompatActivity implements GoogleA
     private EditText consignee_add_edit_text;
 
     private  ConsigneeDetail consigneeDetail;
-    public ArrayList<ConsigneeDetail> objectList;
+
     private  BroadcastReceiver receiver;
+
+    ConsigneeDataSource datasource;
 
     private void initializer()
     {
@@ -102,10 +104,13 @@ public class MapsSampleMainActivity extends AppCompatActivity implements GoogleA
         actionBar.setDisplayShowHomeEnabled(false);
 
 
+//
+//        Intent intent = getIntent();
+//        Bundle args = intent.getBundleExtra("BUNDLE");
+//        objectList = (ArrayList<ConsigneeDetail>) args.getSerializable("ARRAYLIST");
 
-        Intent intent = getIntent();
-        Bundle args = intent.getBundleExtra("BUNDLE");
-        objectList = (ArrayList<ConsigneeDetail>) args.getSerializable("ARRAYLIST");
+        datasource = new ConsigneeDataSource(this);
+        datasource.open();
 
     }
 
@@ -132,16 +137,17 @@ public class MapsSampleMainActivity extends AppCompatActivity implements GoogleA
                     consigneeDetail.setLat(center.latitude);
                     consigneeDetail.setLon(center.longitude);
                     consigneeDetail.setDistance(8);
-                    objectList.add(consigneeDetail);
+
+                    datasource.createConsignee(name,center.latitude,center.longitude);
 
                     Log.d("Add Consigness btn","clicked");
                     Intent showHomeActivity = new Intent(v.getContext(),HomeActivity.class);
-
-                    Bundle args = new Bundle();
-                    args.putSerializable("ARRAYLIST",(Serializable)objectList);
-                    showHomeActivity.putExtra("BUNDLE",args);
+//
+//                    Bundle args = new Bundle();
+//                    args.putSerializable("ARRAYLIST",(Serializable)objectList);
+//                    showHomeActivity.putExtra("BUNDLE",args);
                     startActivity(showHomeActivity);
-
+                    finish();
 
                 }
             }
@@ -314,7 +320,6 @@ public class MapsSampleMainActivity extends AppCompatActivity implements GoogleA
             myGMap.setMyLocationEnabled(true);
             myGMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
 
-            //getting the location when the map is dragged
 
 
 
@@ -330,6 +335,9 @@ public class MapsSampleMainActivity extends AppCompatActivity implements GoogleA
         Bitmap b=bitmapdraw.getBitmap();
         final Bitmap smallMarker = Bitmap.createScaledBitmap(b, 80, 80, false);
 
+
+
+        //getting the location when the map is dragged
         myGMap.setOnCameraChangeListener(new GoogleMap.OnCameraChangeListener() {
 
             @Override
@@ -338,7 +346,7 @@ public class MapsSampleMainActivity extends AppCompatActivity implements GoogleA
                 //center = myGMap.getCameraPosition().target;
                 center=arg0.target;
 
-                markText.setText(" location ");
+                markText.setText(center.latitude+" , "+center.longitude);
                 myGMap.clear();
                 markLay.setVisibility(View.VISIBLE);
 

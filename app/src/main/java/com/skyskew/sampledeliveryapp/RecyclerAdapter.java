@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.PhotoHolder> {
 
@@ -36,9 +37,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.PhotoH
     @Override
     public void onBindViewHolder(RecyclerAdapter.PhotoHolder holder, int position) {
         ConsigneeDetail item = mDetails.get(position);
-        if(!item.isCompleted()) {
+
             holder.bindItem(item);
-        }
+
     }
 
     @Override
@@ -52,6 +53,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.PhotoH
         private TextView mItemName;
         private TextView mItemDistance;
         private ConsigneeDetail mDetail;
+        private  ImageView imageView;
 
         //
         private static final String PHOTO_KEY = "PHOTO";
@@ -63,6 +65,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.PhotoH
 
             mItemName = (TextView) v.findViewById(R.id.item_name);
             mItemDistance = (TextView) v.findViewById(R.id.item_distance);
+            imageView    =   (ImageView)v.findViewById(R.id.ditance_image);
             v.setOnClickListener(this);
         }
 
@@ -90,17 +93,21 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.PhotoH
 
 
             Log.d("mdetialdistance",String.valueOf(mDetail.getDistance()));
+            if(!mDetail.isCompleted()) {
+                float distance = mDetail.getDistance();
+                if (distance > 1000) {
+                    distance = distance / 1000;
 
-            float distance= mDetail.getDistance();
-            if(distance>1000)
-            {
-                distance = distance/1000;
-
-                mItemDistance.setText(String.format("%.1f",distance) + " KM");
-            }else {
-               mItemDistance.setText(String.valueOf((int)distance+" M"));
+                    mItemDistance.setText(String.format("%.1f", distance) + " KM");
+                } else {
+                    mItemDistance.setText(String.valueOf((int) distance + " M"));
+                }
             }
-
+            else
+            {
+                imageView.setBackgroundResource(R.drawable.ic_done_white_24dp);
+                mItemDistance.setCursorVisible(false);
+            }
         }
     }
 }

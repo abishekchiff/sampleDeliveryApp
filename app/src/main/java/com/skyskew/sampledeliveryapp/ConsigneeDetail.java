@@ -11,12 +11,23 @@ import java.io.Serializable;
 public class ConsigneeDetail implements Serializable {
 
 
+
+
+    private  long id;
     private String name ;
     private  double lat;
     private  double lon;
     private  float distance;
     private boolean completed ;
 
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public boolean isCompleted() {
         return completed;

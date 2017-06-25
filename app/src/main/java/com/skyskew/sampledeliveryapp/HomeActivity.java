@@ -48,6 +48,9 @@ public class HomeActivity extends AppCompatActivity {
     static final private  String LOC_LAT = "com.skyskew.sampledeliveryapp.lat";
     static final private  String LOC_LONG = "com.skyskew.sampledeliveryapp.long";
 
+    ConsigneeDataSource datasource;
+    FloatingActionButton fab;
+
     private  void initializer(Bundle instance_state)
     {
         if (instance_state != null){
@@ -60,27 +63,32 @@ public class HomeActivity extends AppCompatActivity {
 
         startServiceInHome();
 
-        ConsigneeDetail a1= new ConsigneeDetail("abi",5,13.0827,80.2707184);
-        ConsigneeDetail a2 = new ConsigneeDetail("abid",10,13.0827,80.2707184);
+//        ConsigneeDetail a1= new ConsigneeDetail("abi",5,13.0827,80.2707184);
+//        ConsigneeDetail a2 = new ConsigneeDetail("abid",10,13.0827,80.2707184);
+//
+//        myPeople.add(a1);
+//        myPeople.add(a2);
 
-        myPeople.add(a1);
-        myPeople.add(a2);
+        datasource = new ConsigneeDataSource(this);
+        datasource.open();
+//        datasource.createConsignee("abi",13.0827,80.2707184);
+//        datasource.createConsignee("abAY",13.0827,80.2707184);
+
+        myPeople = datasource.getAllComments();
 
 
-
-
-        Intent intent =getIntent();
-        Bundle args = intent.getBundleExtra("BUNDLE");
-
-        if(args!=null) {
-            ArrayList<ConsigneeDetail> temp = (ArrayList<ConsigneeDetail>) args.getSerializable("ARRAYLIST");
-
-            if (temp != null) {
-                Log.d("passing people","recieved from maps");
-                myPeople.clear();
-                myPeople.addAll(temp);
-            }
-        }
+//        Intent intent =getIntent();
+//        Bundle args = intent.getBundleExtra("BUNDLE");
+//
+//        if(args!=null) {
+//            ArrayList<ConsigneeDetail> temp = (ArrayList<ConsigneeDetail>) args.getSerializable("ARRAYLIST");
+//
+//            if (temp != null) {
+//                Log.d("passing people","recieved from maps");
+//                myPeople.clear();
+//                myPeople.addAll(temp);
+//            }
+//        }
 
 
         mAdapter = new RecyclerAdapter(myPeople);
@@ -94,13 +102,7 @@ public class HomeActivity extends AppCompatActivity {
 
 
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-    }
-
-
-    private  void listeners()
-    {
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+       fab= (FloatingActionButton) findViewById(R.id.fab);
 
         if (Build.VERSION.SDK_INT < 23) {
 
@@ -109,6 +111,14 @@ public class HomeActivity extends AppCompatActivity {
         } else {
             checkAndRequestPermissions(this);
         }
+
+    }
+
+
+    private  void listeners()
+    {
+
+
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,9 +129,9 @@ public class HomeActivity extends AppCompatActivity {
 
                     Intent showAddIntent = new Intent(context, MapsSampleMainActivity.class);
 
-                    Bundle args = new Bundle();
-                    args.putSerializable("ARRAYLIST",(Serializable)myPeople);
-                    showAddIntent.putExtra("BUNDLE",args);
+//                    Bundle args = new Bundle();
+//                    args.putSerializable("ARRAYLIST",(Serializable)myPeople);
+//                    showAddIntent.putExtra("BUNDLE",args);
                     context.startActivity(showAddIntent);
                     finish();
 
@@ -172,8 +182,16 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
 
-                myPeople.remove(viewHolder.getAdapterPosition());
-                mAdapter.notifyItemRemoved(viewHolder.getAdapterPosition());
+
+                ConsigneeDetail c = myPeople.get(viewHolder.getAdapterPosition());
+                if(c.isCompleted()) {
+                    datasource.deleteConsignee(c);
+                    myPeople.remove(viewHolder.getAdapterPosition());
+                    mAdapter.notifyItemRemoved(viewHolder.getAdapterPosition());
+                }
+                else {
+                    mAdapter.notifyDataSetChanged();
+                }
             }
 
             @Override
